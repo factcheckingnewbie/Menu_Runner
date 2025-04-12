@@ -1,0 +1,5 @@
+./script.sh 'start' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort
+./script.sh 'start' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+./script.sh 'freeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort
+./script.sh 'freeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+

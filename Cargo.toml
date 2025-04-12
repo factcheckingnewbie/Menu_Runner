@@ -1,0 +1,8 @@
+[package]
+name = "Menu Runner"
+version = "0.0.0.01a"
+edition = "2021"
+
+[dependencies]
+iced = "0.9"
+
