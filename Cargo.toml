@@ -1,8 +1,7 @@
 [package]
-name = "Menu Runner"
-version = "0.0.0.01a"
+name = "menu_runner"
+version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-iced = "0.9"
-
+slint = "1.3"
