@@ -1,8 +1,0 @@
-"grafikort start"      "./script.sh 'start' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"
-"grefikkort freeze"      "./script.sh 'freeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
-"grefikkort unfreeze"      "./script.sh 'unfreeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
-"grefikkort kill"      "./script.sh 'kill' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
-"models start"      "./script.sh 'start' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
-"models freeze"      "./script.sh 'freeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
-"models unfreeze"      "./script.sh 'unfreeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
-"models kill"      "./script.sh 'kill' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
