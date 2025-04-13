@@ -1,3 +1,3 @@
-A simple menu systes to manage programs. 
+A simple menu system to manage states of programs. 
 I use it to toggling states for multiple firefox sessions. 
-If you edit the menu.txt, and use anther script thatn script.sh, you can uset the prog for other purposes.
+If you edit the menu.txt, and use anther script than script.sh, you can use the prog for other purposes.
