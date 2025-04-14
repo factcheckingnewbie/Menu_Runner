@@ -3,6 +3,6 @@
 "grefikkort unfreeze"      "./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
 "grefikkort kill"      "./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
 "models start"      "./core/menu_runner 'start' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
-"models freeze"      "./core/menu_runner 'freeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
-"models unfreeze"      "./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
-"models kill"      "./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+"models freeze"      "./core/menu_runner 'freeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
+"models unfreeze"      "./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
+"models kill"      "./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
