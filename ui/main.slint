@@ -1,43 +1,44 @@
-import { VerticalBox, Button, ListView } from "std-widgets.slint";
+import { VerticalBox, ListView } from "std-widgets.slint";
 
 export struct MenuEntry {
     number: string,
     name: string,
+    command: string,
 }
 
 export component MainWindow inherits Window {
     title: "Menu Runner";
     width: 400px;
     height: 500px;
-    
+
     callback run_command(int);
     in property <[MenuEntry]> menu_items;
-    
+
     VerticalBox {
         Text {
             text: "Menu Runner";
             font-size: 24px;
             horizontal-alignment: center;
         }
-        
+
         Rectangle {
             height: 1px;
             background: #ccc;
         }
-        
+
         ListView {
             for item[i] in menu_items: Rectangle {
                 height: 40px;
-                
+
                 VerticalLayout {
                     padding: 5px;
-                    
+
                     Text {
                         text: item.number + ". " + item.name;
                         font-size: 16px;
                     }
                 }
-                
+
                 TouchArea {
                     width: 100%;
                     height: 100%;
@@ -45,7 +46,7 @@ export component MainWindow inherits Window {
                         root.run_command(i);
                     }
                 }
-                
+
                 Rectangle {
                     height: 1px;
                     background: #eee;

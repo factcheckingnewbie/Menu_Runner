@@ -1,7 +1,12 @@
 [package]
-name = "menu_runner"
+name = "Menu_Runner_menu"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-slint = "1.3"
+slint = "1.10.0"
+tokio = { version = "1.44.2", features = ["full"] }
+
+[build-dependencies]
+slint-build = "1.0"
+

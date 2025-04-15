@@ -4,15 +4,18 @@ use std::process::Command;
 use std::rc::Rc;
 use std::path::Path;
 use std::thread;
-use slint::{ModelRc, VecModel, Weak};
+use slint::{ModelRc, VecModel, Weak, SharedString};
+use std::collections::HashMap;
 
 // Define the UI inline with proper imports
 slint::slint! {
-    import { VerticalBox, ListView } from "std-widgets.slint";
+    import { VerticalBox, ListView, HorizontalBox, Button } from "std-widgets.slint";
 
     struct MenuEntry {
-        number: string,
-        name: string,
+        program: string,
+        path_name: string,
+        actions: [string],
+        commands: [string],
     }
 
     export component MainWindow inherits Window {
@@ -20,7 +23,7 @@ slint::slint! {
         width: 400px;
         height: 500px;
         
-        callback run_command(int);
+        callback run_command(string);
         in property <[MenuEntry]> menu_items;
         in property <string> status_text: "";
         
@@ -45,24 +48,28 @@ slint::slint! {
             
             ListView {
                 visible: menu_items.length > 0;
-                for item[i] in menu_items: Rectangle {
-                    height: 40px;
+                for item in menu_items: VerticalLayout {
+                    padding: 10px;
+                    spacing: 5px;
                     
-                    VerticalLayout {
-                        padding: 5px;
+                    // Action buttons row
+                    HorizontalBox {
+                        spacing: 10px;
+                        alignment: center;
                         
-                        Text {
-                            text: item.number + ". " + item.name;
-                            font-size: 16px;
+                        for action[index] in item.actions: Button {
+                            text: "[ " + action + " ]";
+                            clicked => {
+                                run_command(item.commands[index]);
+                            }
                         }
                     }
                     
-                    TouchArea {
-                        width: 100%;
-                        height: 100%;
-                        clicked => {
-                            run_command(i);
-                        }
+                    // Program and path name
+                    Text {
+                        text: item.program + ": " + item.path_name;
+                        font-size: 16px;
+                        horizontal-alignment: center;
                     }
                     
                     Rectangle {
@@ -86,6 +93,14 @@ slint::slint! {
 struct MenuCommand {
     name: String,
     command: String,
+}
+
+// New struct to represent a grouped menu item
+struct GroupedMenuEntry {
+    program: String,
+    path_name: String,
+    actions: Vec<String>,
+    commands: Vec<String>,
 }
 
 fn load_menu() -> Vec<MenuCommand> {
@@ -164,14 +179,70 @@ fn load_menu() -> Vec<MenuCommand> {
     commands
 }
 
-fn run_command_async(command_text: String, command_name: String, window: Weak<MainWindow>) {
-    thread::spawn(move || {
-        // Clone command_name since we'll use it multiple times
-        let display_name = command_name.clone();
+// Extract program name and path from command string
+fn extract_command_info(command: &str) -> (String, String, String) {
+    // Extract action from command (e.g., 'start', 'freeze', etc.)
+    let action = if let Some(action_start) = command.find('\'') {
+        if let Some(action_end) = command[action_start + 1..].find('\'') {
+            command[action_start + 1..action_start + 1 + action_end].to_string()
+        } else {
+            "unknown".to_string()
+        }
+    } else {
+        "unknown".to_string()
+    };
+    
+    // Extract program name (assuming it's after the action)
+    let program_parts: Vec<&str> = command.split_whitespace().collect();
+    let program = if program_parts.len() > 2 {
+        program_parts[2].to_string()
+    } else {
+        "unknown".to_string()
+    };
+    
+    // Extract path (last segment after final slash)
+    let path = if let Some(last_slash) = command.rfind('/') {
+        command[last_slash + 1..].trim_end_matches('"').to_string()
+    } else {
+        "unknown".to_string()
+    };
+    
+    (action, program, path)
+}
+
+fn group_menu_commands(commands: &[MenuCommand]) -> Vec<GroupedMenuEntry> {
+    let mut groups: HashMap<String, GroupedMenuEntry> = HashMap::new();
+    
+    for cmd in commands {
+        let (action, program, path) = extract_command_info(&cmd.command);
+        let key = format!("{}:{}", program, path);
         
+        // If group exists, add action and command to it
+        if let Some(group) = groups.get_mut(&key) {
+            group.actions.push(action);
+            group.commands.push(cmd.command.clone());
+        } else {
+            // Create new group
+            groups.insert(key, GroupedMenuEntry {
+                program,
+                path_name: path,
+                actions: vec![action],
+                commands: vec![cmd.command.clone()],
+            });
+        }
+    }
+    
+    groups.into_values().collect()
+}
+
+fn run_command_async(command_text: String, window: Weak<MainWindow>) {
+    // Clone command_text for use in the closure
+    let command_for_status = command_text.clone();
+    
+    thread::spawn(move || {
         // Set status to indicate we're starting the command
         window.upgrade_in_event_loop(move |handle| {
-            handle.set_status_text(format!("Running: {}", display_name).into());
+            handle.set_status_text(format!("Running: {}", command_for_status).into());
         }).expect("Failed to upgrade window handle");
         
         // Execute the command in a separate thread
@@ -186,7 +257,7 @@ fn run_command_async(command_text: String, command_name: String, window: Weak<Ma
                 let stdout = String::from_utf8_lossy(&output.stdout).to_string();
                 let stderr = String::from_utf8_lossy(&output.stderr).to_string();
                 
-                println!("Command '{}' completed with status: {}", command_name, status);
+                println!("Command completed with status: {}", status);
                 println!("Output: {}", stdout);
                 
                 if !stderr.is_empty() {
@@ -195,9 +266,9 @@ fn run_command_async(command_text: String, command_name: String, window: Weak<Ma
                 
                 // Update UI with status
                 let status_message = if status.success() {
-                    format!("Command '{}' completed successfully", command_name)
+                    format!("Command completed successfully")
                 } else {
-                    format!("Command '{}' failed with status {}", command_name, status)
+                    format!("Command failed with status {}", status)
                 };
                 
                 window.upgrade_in_event_loop(move |handle| {
@@ -214,7 +285,7 @@ fn run_command_async(command_text: String, command_name: String, window: Weak<Ma
                 }).ok();
             },
             Err(e) => {
-                let error_message = format!("Failed to execute command '{}': {}", command_name, e);
+                let error_message = format!("Failed to execute command: {}", e);
                 println!("{}", error_message);
                 
                 window.upgrade_in_event_loop(move |handle| {
@@ -233,38 +304,47 @@ fn main() {
         return;
     }
     
-    let commands_rc = Rc::new(commands);
+    // Group commands by path
+    let grouped_commands = group_menu_commands(&commands);
+    println!("Created {} menu groups", grouped_commands.len());
     
     let main_window = MainWindow::new().unwrap();
     
-    // Create a vector of MenuEntry objects for Slint
-    let menu_items: Vec<MenuEntry> = commands_rc
+    // Convert GroupedMenuEntry structs to slint MenuEntry objects
+    let menu_items: Vec<MenuEntry> = grouped_commands
         .iter()
-        .enumerate()
-        .map(|(i, cmd)| {
-            println!("Adding menu item {}: {}", i+1, cmd.name);
+        .map(|group| {
+            // Convert actions to Vec<SharedString> first
+            let actions: Vec<SharedString> = group.actions
+                .iter()
+                .map(|a| a.clone().into())
+                .collect();
+            
+            // Convert commands to Vec<SharedString> first
+            let commands: Vec<SharedString> = group.commands
+                .iter()
+                .map(|c| c.clone().into())
+                .collect();
+            
+            // Create the MenuEntry with the converted vectors
+            // Use the new conversion pattern from the changelog
             MenuEntry {
-                number: (i + 1).to_string().into(),
-                name: cmd.name.clone().into(),
+                program: group.program.clone().into(),
+                path_name: group.path_name.clone().into(),
+                actions: Rc::new(VecModel::from(actions)).into(),
+                commands: Rc::new(VecModel::from(commands)).into(),
             }
         })
         .collect();
-    
-    println!("Created {} menu entries for UI", menu_items.len());
     
     // Convert to Slint's model
     let model = Rc::new(VecModel::from(menu_items));
     main_window.set_menu_items(ModelRc::from(model));
     
-    let commands_for_callback = commands_rc.clone();
     let window_weak = main_window.as_weak();
     
-    main_window.on_run_command(move |index| {
-        let command = &commands_for_callback[index as usize];
-        let command_text = command.command.clone();
-        let command_name = command.name.clone();
-        
-        run_command_async(command_text, command_name, window_weak.clone());
+    main_window.on_run_command(move |command_text| {
+        run_command_async(command_text.to_string(), window_weak.clone());
     });
     
     println!("Starting UI...");
