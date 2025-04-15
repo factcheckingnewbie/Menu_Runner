@@ -1,0 +1,17 @@
+./README.md
+./core/src/main.rs
+./core/Cargo.toml
+./core/Cargo.lock
+./ui/main.slint
+./src/main.rs
+./build.rs
+./Cargo.toml
+./maintance/words.txt
+./maintance/README.md
+./maintance/future_create_menu_txt.sh
+./maintance/create_menu_txt.sh
+./configs/menu.txt
+./configs/future_menu.txt
+./Cargo.lock
+./maybe-use-later/a
+./file_structure.txt
