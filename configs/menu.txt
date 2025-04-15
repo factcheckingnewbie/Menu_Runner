@@ -1,0 +1,85 @@
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
+
+\"\" "./core/menu_runner 'start' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
+\"\" "./core/menu_runner 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
+\"\" "./core/menu_runner 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
+\"\" "./core/menu_runner 'kill' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
+
