@@ -3,10 +3,24 @@ name = "Menu_Runner_menu"
 version = "0.1.0"
 edition = "2021"
 
+
+# Add workspace configuration
+[workspace]
+members = [
+    ".",
+    "core",
+    "menu_core"
+]
+
+
+
 [dependencies]
 slint = "1.10.0"
 tokio = { version = "1.44.2", features = ["full"] }
+Menu_Runner_core = { path = "./menu_core" }  # Add new dependency
 
 [build-dependencies]
 slint-build = "1.0"
+
+
 
