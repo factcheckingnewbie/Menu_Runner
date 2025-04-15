@@ -1,0 +1,51 @@
+Label=Async
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async
+Label=Models
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models
+Label=Slask
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask
+Label=Development_Read
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read
+Label=Interfaces
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces
+Label=firefox
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/config.firefox
+Label=AI-CHATT
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT
+Label=Media
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media
+Label=Tmp
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp
+Label=Gui-Rust
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust
+Label=Misc
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc
+Label=AI-chat-Behavior
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior
+Label=AI_Suite
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite
+Label=VibeCoding
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding
+Label=pc
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc
+Label=0
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0
+Label=Grafikkort
+ action=start action=freeze action=unfreeze action=kill
+command=./core/menu_runner <action> firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort

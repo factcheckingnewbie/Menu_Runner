@@ -1,5 +1,8 @@
 #/usr/bn/env bash
 
-for w in ~/Stuff/Settings/firefox/*; do 
-    p="${w}"; 
-    while IFS= read -r line; do [ ! -z ${line} ] &&  echo  "\\\"\\\" \"./core/menu_runner '${line}' firefox  ${p}\"" || echo ""; done < ./words.txt;  done
+for profile in ~/Stuff/Settings/firefox/*; do 
+    while IFS= read -r word; do 
+        [ ! -z ${word} ] && 
+            profile_part="$(echo ${profile} | cut -d/ -f7 | cut -d. -f2)" && 
+            echo  "\"${word}  ${profile_part}\" ./core/menu_runner '${word}' firefox  ${profile}\"" || 
+            echo ""; done < ./words.txt;  done
