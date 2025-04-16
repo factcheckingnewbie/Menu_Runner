@@ -5,7 +5,6 @@
 ./ui/main.slint
 ./src/main.rs
 ./build.rs
-./Cargo.toml
 ./maintance/words.txt
 ./maintance/README.md
 ./maintance/future_create_menu_txt.sh
@@ -13,5 +12,10 @@
 ./configs/menu.txt
 ./configs/future_menu.txt
 ./Cargo.lock
-./maybe-use-later/a
-./file_structure.txt
+./doc/file_structure.txt
+./menu_core/src/models.rs
+./menu_core/src/lib.rs
+./menu_core/src/parser.rs
+./menu_core/Cargo.toml
+./Cargo.toml
+./menu.txt

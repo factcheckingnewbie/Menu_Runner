@@ -3,11 +3,23 @@
 version = 4
 
 [[package]]
+name = "Menu_Runner_core"
+version = "0.1.0"
+
+[[package]]
 name = "Menu_Runner_menu"
 version = "0.1.0"
 dependencies = [
+ "Menu_Runner_core",
  "slint",
  "slint-build",
+ "tokio",
+]
+
+[[package]]
+name = "Menu_Runner_system"
+version = "0.1.0"
+dependencies = [
  "tokio",
 ]
 

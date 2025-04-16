@@ -4,7 +4,7 @@ use std::thread;
 use slint::{ModelRc, VecModel, Weak, SharedString};
 
 // Import from our new menu core library
-use Menu_Runner_core::{MenuCommand, GroupedMenuEntry, load_menu, group_menu_commands};
+use Menu_Runner_core::{load_menu, group_menu_commands};
 
 // Define the UI inline with proper imports
 slint::slint! {

@@ -6,18 +6,18 @@ use std::collections::HashMap;
 
 use crate::models::{MenuCommand, GroupedMenuEntry};
 
-/// Loads menu entries from a menu.txt file
+/// Loads menu entries from a configs/menu.txt file
 pub fn load_menu() -> Vec<MenuCommand> {
-    // Check if menu.txt exists
-    if !Path::new("menu.txt").exists() {
-        println!("ERROR: menu.txt file not found!");
+    // Check if configs/menu.txt exists
+    if !Path::new("configs/menu.txt").exists() {
+        println!("ERROR: configs/menu.txt file not found!");
         return Vec::new();
     }
     
-    let file = match File::open("menu.txt") {
+    let file = match File::open("configs/menu.txt") {
         Ok(f) => f,
         Err(e) => {
-            println!("Failed to open menu.txt: {}", e);
+            println!("Failed to open configs/menu.txt: {}", e);
             return Vec::new();
         }
     };
@@ -79,7 +79,7 @@ pub fn load_menu() -> Vec<MenuCommand> {
         }
     }
     
-    println!("Loaded {} menu items from menu.txt", commands.len());
+    println!("Loaded {} menu items from configs/menu.txt", commands.len());
     commands
 }
 
