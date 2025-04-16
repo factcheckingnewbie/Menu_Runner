@@ -5,6 +5,9 @@ version = 4
 [[package]]
 name = "Menu_Runner_core"
 version = "0.1.0"
+dependencies = [
+ "tokio",
+]
 
 [[package]]
 name = "Menu_Runner_menu"

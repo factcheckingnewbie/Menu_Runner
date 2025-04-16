@@ -3,24 +3,21 @@ name = "Menu_Runner_menu"
 version = "0.1.0"
 edition = "2021"
 
-
-# Add workspace configuration
 [workspace]
 members = [
-    ".",
+    # "." is removed - this is the critical fix
     "core",
     "menu_core"
 ]
 
-
+[[bin]]
+name = "Menu_Runner_menu"
+path = "src/main.async.rs"
 
 [dependencies]
 slint = "1.10.0"
 tokio = { version = "1.44.2", features = ["full"] }
-Menu_Runner_core = { path = "./menu_core" }  # Add new dependency
+Menu_Runner_core = { path = "./menu_core" }
 
 [build-dependencies]
-slint-build = "1.0"
-
-
-
+slint-build = "1.10.0"

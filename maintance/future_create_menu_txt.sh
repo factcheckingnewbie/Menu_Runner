@@ -1,13 +1,16 @@
 #/usr/bn/env bash
 
+
 for profile in ~/Stuff/Settings/firefox/*; do
     label="$(echo ${profile} | cut -d/ -f7| cut -d. -f2)"
-    words=""
-    echo "Label=${label}"
+    echo "Label: \"${label}\""
+    
+    action_string=""
     while IFS= read -r action; do 
         [ ! -z ${action} ] && 
-         words="${words} action=${action}";
-    done < ./words.txt;
-    echo "${words}"    
-    echo  "command=./core/menu_runner <action> firefox  ${profile}" 
+         action_string="${action_string} \"${action}\"";
+    done < ./words.txt
+    echo " Actions:${action_string}"   
+    echo " Command: \"./core/menu_runner \" <Action> \" firefox ${profile}\""
+    echo "" 
 done
