@@ -1,30 +1,36 @@
-// menu_core/src/parser_async.rs
-use std::fs;
-use std::path::Path;
-use crate::models::MenuCommand;
-use tokio::fs as tokio_fs;
+use std::collections::HashMap;
+use crate::models::CommandInfo;
 
-/// Load menu commands from the default menu file location asynchronously
-pub async fn load_menu_async() -> Vec<MenuCommand> {
-    // First try the new format
-    let new_format_path = Path::new("configs/future_menu.txt");
-    if new_format_path.exists() {
-        if let Ok(content) = tokio_fs::read_to_string(new_format_path).await {
-            let commands = parse_new_menu_format(&content);
-            if !commands.is_empty() {
-                return commands;
-            }
-        }
+// Keep your existing load_menu_async function
+
+// Add these missing functions:
+pub async fn group_menu_commands(commands: Vec<CommandInfo>) -> HashMap<String, Vec<CommandInfo>> {
+    let mut grouped: HashMap<String, Vec<CommandInfo>> = HashMap::new();
+    
+    for cmd in commands {
+        grouped.entry(cmd.category.clone())
+               .or_insert_with(Vec::new)
+               .push(cmd);
     }
     
-    // Fall back to the traditional format if new format failed
-    let traditional_path = Path::new("configs/menu.txt");
-    if let Ok(content) = tokio_fs::read_to_string(traditional_path).await {
-        return parse_traditional_menu(&content);
-    }
-    
-    Vec::new()
+    grouped
 }
 
-// Other parsing functions remain the same as they're not I/O bound
-// ...
+pub async fn extract_command_info(line: &str) -> Option<CommandInfo> {
+    // Parse the line using the exact format from your future_menu.txt
+    let parts: Vec<&str> = line.split('|').collect();
+    
+    // Validate we have enough parts for a valid command
+    if parts.len() >= 4 {
+        Some(CommandInfo {
+            name: parts[0].trim().to_string(),
+            command: parts[1].trim().to_string(),
+            description: parts[2].trim().to_string(),
+            category: parts[3].trim().to_string(),
+            // If there are additional fields in your CommandInfo struct,
+            // you'll need to initialize them here
+        })
+    } else {
+        None
+    }
+}

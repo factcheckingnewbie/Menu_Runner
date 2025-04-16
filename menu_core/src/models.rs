@@ -1,4 +1,4 @@
-// menu_core/src/models.rs
+/// menu_core/src/models.rs
 
 /// Represents a single menu command entry
 pub struct MenuCommand {
@@ -12,4 +12,12 @@ pub struct GroupedMenuEntry {
     pub path_name: String,
     pub actions: Vec<String>,
     pub commands: Vec<String>,
+}
+
+/// Represents detailed command information with category and description
+pub struct CommandInfo {
+    pub name: String,
+    pub command: String,
+    pub description: String,
+    pub category: String,
 }
