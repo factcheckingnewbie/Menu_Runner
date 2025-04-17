@@ -14,6 +14,7 @@ pub struct GroupedMenuEntry {
 }
 
 /// Represents detailed command information with category and description
+#[derive(Clone)]
 pub struct CommandInfo {
     pub name: String,
     pub command: String,
