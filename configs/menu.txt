@@ -1,85 +1,19 @@
-"start  Async" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
-"freeze  Async" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
-"unfreeze  Async" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
-"kill  Async" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/1myymfyv.Async"
-
-"start  Models" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
-"freeze  Models" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
-"unfreeze  Models" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
-"kill  Models" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/4tdusvfo.Models"
-
-"start  Slask" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
-"freeze  Slask" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
-"unfreeze  Slask" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
-"kill  Slask" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/7pdosm80.Slask"
-
-"start  Development_Read" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
-"freeze  Development_Read" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
-"unfreeze  Development_Read" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
-"kill  Development_Read" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/9bvrshko.Development_Read"
-
-"start  Interfaces" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
-"freeze  Interfaces" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
-"unfreeze  Interfaces" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
-"kill  Interfaces" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/b8ldjb8g.Interfaces"
-
-"start  firefox" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
-"freeze  firefox" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
-"unfreeze  firefox" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
-"kill  firefox" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/config.firefox"
-
-"start  AI-CHATT" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
-"freeze  AI-CHATT" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
-"unfreeze  AI-CHATT" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
-"kill  AI-CHATT" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/dl6aek56.AI-CHATT"
-
-"start  Media" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
-"freeze  Media" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
-"unfreeze  Media" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
-"kill  Media" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/dwj547bg.Media"
-
-"start  Tmp" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
-"freeze  Tmp" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
-"unfreeze  Tmp" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
-"kill  Tmp" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/j1m7yh8h.Tmp"
-
-"start  Gui-Rust" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
-"freeze  Gui-Rust" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
-"unfreeze  Gui-Rust" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
-"kill  Gui-Rust" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/lmjb25cu.Gui-Rust"
-
-"start  Misc" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
-"freeze  Misc" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
-"unfreeze  Misc" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
-"kill  Misc" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/msbme4k1.Misc"
-
-"start  AI-chat-Behavior" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
-"freeze  AI-chat-Behavior" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
-"unfreeze  AI-chat-Behavior" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
-"kill  AI-chat-Behavior" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/okncsyl1.AI-chat-Behavior"
-
-"start  AI_Suite" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
-"freeze  AI_Suite" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
-"unfreeze  AI_Suite" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
-"kill  AI_Suite" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/orj967u2.AI_Suite"
-
-"start  VibeCoding" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
-"freeze  VibeCoding" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
-"unfreeze  VibeCoding" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
-"kill  VibeCoding" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/p5xdzn4s.VibeCoding"
-
-"start  pc" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
-"freeze  pc" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
-"unfreeze  pc" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
-"kill  pc" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/RemotecCTRL.pc"
-
-"start  0" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
-"freeze  0" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
-"unfreeze  0" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
-"kill  0" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/Slinit.0"
-
-"start  Grafikkort" "./target/debug/Menu_Runner_system 'start' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
-"freeze  Grafikkort" "./target/debug/Menu_Runner_system 'freeze' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
-"unfreeze  Grafikkort" "./target/debug/Menu_Runner_system 'unfreeze' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
-"kill  Grafikkort" "./target/debug/Menu_Runner_system 'kill' firefox  /home/ptr/Stuff/Settings/firefox/utzk9f3u.Grafikkort"
-
+<<<<<<< ours
+"grafikort start"      "./core/menu_runner 'start' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"
+"grefikkort freeze"      "./core/menu_runner 'freeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
+"grefikkort unfreeze"      "./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
+"grefikkort kill"      "./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort"    
+"models start"      "./core/menu_runner 'start' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
+"models freeze"      "./core/menu_runner 'freeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
+"models unfreeze"      "./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
+"models kill"      "./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models"
+=======
+grafikort start   :#::#:     ./core/menu_runner 'start' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort
+grefikkort freeze  :#::#:      ./core/menu_runner 'freeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort    
+grefikkort unfreeze : #::#:      ./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort    
+grefikkort kill   :#::#:       ./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/utzk9f3u.Grafikkort    
+models start  :#::#:      ./core/menu_runner 'start' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+models freeze  :#::#:      ./core/menu_runner 'freeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+models unfreeze  :#::#:      ./core/menu_runner 'unfreeze' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+models kill  :#::#:      ./core/menu_runner 'kill' firefox ~/Stuff/.settings/firefox/4tdusvfo.Models
+>>>>>>> theirs

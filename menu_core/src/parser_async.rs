@@ -1,10 +1,11 @@
 use std::collections::HashMap;
+use crate::models::CommandInfo;
 use std::path::Path;
 use tokio::fs as tokio_fs;
-use crate::models::CommandInfo;
-
-/// Load menu commands from the menu file asynchronously
-pub async fn load_menu_async() -> Vec<CommandInfo> {
+ 
+pub async fn load_menu_async() -> Vec<crate::models::CommandInfo> {
+    // Implementation of load_menu_async that was previously in main_async.rs
+   
     // First try the new format with extended information
     let new_format_path = Path::new("configs/future_menu.txt");
     if new_format_path.exists() {
@@ -40,7 +41,7 @@ pub async fn load_menu_async() -> Vec<CommandInfo> {
             // Traditional format only has name and command
             let parts: Vec<&str> = line.split('|').collect();
             if parts.len() >= 2 {
-                commands.push(CommandInfo {
+                commands.push(crate::models::CommandInfo {
                     name: parts[0].trim().to_string(),
                     command: parts[1].trim().to_string(),
                     description: "".to_string(), // No description in traditional format
@@ -55,20 +56,18 @@ pub async fn load_menu_async() -> Vec<CommandInfo> {
     Vec::new()
 }
 
-/// Group menu commands by their category
-pub async fn group_menu_commands(commands: &[CommandInfo]) -> HashMap<String, Vec<CommandInfo>> {
-    let mut grouped: HashMap<String, Vec<CommandInfo>> = HashMap::new();
+pub async fn group_menu_commands(commands: &[crate::models::CommandInfo]) -> HashMap<String, Vec<crate::models::CommandInfo>> {
+    let mut grouped = HashMap::new();
     
     for cmd in commands {
         grouped.entry(cmd.category.clone())
-               .or_insert_with(Vec::new())
+               .or_insert_with(Vec::new)
                .push(cmd.clone());
     }
     
     grouped
 }
 
-/// Extract detailed command information from a single line
 pub async fn extract_command_info(line: &str) -> Option<CommandInfo> {
     // Parse the line using the exact format from your future_menu.txt
     let parts: Vec<&str> = line.split('|').collect();

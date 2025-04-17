@@ -12,7 +12,7 @@ members = [
 
 [[bin]]
 name = "Menu_Runner_menu"
-path = "src/main.async.rs"
+path = "src/main_async.rs"
 
 [dependencies]
 slint = "1.10.0"
