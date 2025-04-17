@@ -61,7 +61,7 @@ pub async fn group_menu_commands(commands: &[crate::models::CommandInfo]) -> Has
     
     for cmd in commands {
         grouped.entry(cmd.category.clone())
-               .or_insert_with(Vec::new)
+               .or_insert_with(Vec::new())
                .push(cmd.clone());
     }
     
