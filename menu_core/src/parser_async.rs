@@ -57,7 +57,8 @@ pub async fn load_menu_async() -> Vec<crate::models::CommandInfo> {
 }
 
 pub async fn group_menu_commands(commands: &[crate::models::CommandInfo]) -> HashMap<String, Vec<crate::models::CommandInfo>> {
-    let mut grouped = HashMap::new();
+    // Add explicit type annotation here
+    let mut grouped: HashMap<String, Vec<crate::models::CommandInfo>> = HashMap::new();
     
     for cmd in commands {
         grouped.entry(cmd.category.clone())
@@ -67,7 +68,6 @@ pub async fn group_menu_commands(commands: &[crate::models::CommandInfo]) -> Has
     
     grouped
 }
-
 pub async fn extract_command_info(line: &str) -> Option<CommandInfo> {
     // Parse the line using the exact format from your future_menu.txt
     let parts: Vec<&str> = line.split('|').collect();
