@@ -1,4 +1,6 @@
 /// menu_core/src/models.rs
+mod parser_async;                                                                                                                                            
+mod models;
 
 /// Represents a single menu command entry
 pub struct MenuCommand {
