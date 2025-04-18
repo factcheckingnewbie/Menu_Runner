@@ -1,5 +1,6 @@
 /// menu_core/src/models.rs
 /// Represents a single menu command entry
+#[derive(Clone)]
 pub struct MenuCommand {
     pub name: String,
     pub command: String,

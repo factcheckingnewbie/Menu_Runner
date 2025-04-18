@@ -5,7 +5,6 @@ edition = "2021"
 
 [workspace]
 members = [
-    # "." is removed - this is the critical fix
     "core",
     "menu_core"
 ]

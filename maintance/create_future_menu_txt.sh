@@ -10,7 +10,7 @@ for profile in ~/Stuff/Settings/firefox/*; do
         [ ! -z ${action} ] && 
          action_string="${action_string} \"${action}\"";
     done < ./words.txt
-    echo " Actions:${action_string}"   
-    echo " Command: \"./core/menu_runner \" <Action> \" firefox ${profile}\""
+    echo " Actions:${action_string}":   
+    echo " Command: \"./target/debug/Menu_Runner_system '<Action>' firefox ${profile}\""
     echo "" 
 done

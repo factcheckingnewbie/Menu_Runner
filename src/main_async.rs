@@ -1,22 +1,23 @@
 // Import necessary Rust and external crates
-use std::process::Command;
 use std::rc::Rc;
-use std::sync::Arc;
 // Include the Slint modules defined in your .slint files
-// This is CRUCIAL - it makes the MainWindow and MenuEntry types available
 slint::include_modules!();
-use slint::{ModelRc, VecModel, Weak, SharedString};
+use slint::{ModelRc, VecModel, Model, SharedString};
 use tokio::runtime::Runtime;
 use tokio::process::Command as TokioCommand;
 use tokio::task;
 
-// Create a tokio runtime for async operations
+// Import the core types from our menu_core library
+use Menu_Runner_core::{CommandInfo, GroupedMenuEntry};
+
 fn main() {
-    // Create the runtime
+    // Create the runtime with all features enabled
     let rt = Runtime::new().unwrap();
     
     // Enter the runtime context
     rt.block_on(async {
+        println!("Starting async menu loader...");
+        
         // Load menu asynchronously from your future_menu.txt file
         let commands = Menu_Runner_core::load_menu_async().await;
         
@@ -25,12 +26,17 @@ fn main() {
             return;
         }
         
-        // Group commands by category if needed (though we won't use this directly)
+        println!("Successfully loaded {} menu items", commands.len());
+        
+        // Group commands by category
         let grouped_commands = Menu_Runner_core::group_menu_commands(&commands);
         println!("Created {} menu groups", grouped_commands.len());
         
-        // IMPORTANT: Convert CommandInfo objects to MenuEntry structs for the Slint UI
-        // This is because your ui/main.slint expects MenuEntry objects
+        // Build display entries from groupings
+        let grouped_entries = Menu_Runner_core::build_grouped_entries(&commands);
+        println!("Built {} grouped entries for hierarchical display", grouped_entries.len());
+        
+        // Convert CommandInfo objects to MenuEntry structs for the Slint UI
         let menu_entries: Vec<MenuEntry> = commands.iter().enumerate().map(|(i, cmd)| {
             MenuEntry {
                 number: i.to_string().into(), // Slint requires SharedString
@@ -48,22 +54,17 @@ fn main() {
         // Connect the menu_items property in your Slint UI to our model
         main_window.set_menu_items(ModelRc::from(menu_model.clone()));
         
-        // Create a weak reference to avoid ownership issues
-        let window_weak = main_window.as_weak();
-        
         // Set up command handler for when menu items are clicked
-        // This matches the run_command(int) callback in your main.slint
         main_window.on_run_command(move |index| {
             // Get the menu entry at the selected index
             if let Some(entry) = menu_model.row_data(index as usize) {
                 let command_str = entry.command.to_string();
-                println!("Running command: {}", command_str);
+                println!("Running command asynchronously: {}", command_str);
                 
-                // Create a clone of the runtime to move into the async block
-                let rt_clone = rt.clone();
-                
-                // Spawn the command execution in the runtime
-                rt_clone.spawn(async move {
+                // Spawn a new tokio task to execute the command asynchronously
+                task::spawn(async move {
+                    println!("Executing in async task: {}", command_str);
+                    
                     // Execute the command asynchronously using shell
                     let output = TokioCommand::new("sh")
                         .arg("-c")
