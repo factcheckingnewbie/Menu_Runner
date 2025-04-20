@@ -1,11 +1,11 @@
 // Import necessary Rust and external crates
 use std::rc::Rc;
+use std::process::Command;
 // Include the Slint modules defined in your .slint files
 slint::include_modules!();
 use slint::{ModelRc, VecModel, SharedString};
 use tokio::runtime::Runtime;
 use tokio::process::Command as TokioCommand;
-use tokio::task;
 
 // Import the core types from our menu_core library
 use Menu_Runner_core::create_slint_menu_entries;
@@ -18,11 +18,11 @@ fn main() {
     rt.block_on(async {
         println!("Starting async menu loader...");
         
-        // Load menu asynchronously from your future_menu.txt file
-        let commands = Menu_Runner_core::load_menu_async().await;
+        // Load menu asynchronously from the JSON menu file (changed from txt)
+        let commands = Menu_Runner_core::load_menu_json_async().await;
         
         if commands.is_empty() {
-            println!("No valid menu items found. Please check your configs/future_menu.txt format.");
+            println!("No valid menu items found. Please check your configs/future_menu.json format.");
             return;
         }
         
@@ -60,38 +60,43 @@ fn main() {
         
         // Set up command handler for when action buttons are clicked
         main_window.on_run_command(move |command_template, action| {
-            let command_clone = command_template.to_string().replace("<Action>", &action.to_string());
-            println!("Running command asynchronously: {}", command_clone);
+            // Get the command template and replace the action placeholder
+            let mut command_str = command_template.to_string();
             
-            // Spawn a new tokio task to execute the command asynchronously
-            task::spawn(async move {
-                println!("Executing in async task: {}", command_clone);
-                
-                // Execute the command asynchronously using shell
-                let output = TokioCommand::new("sh")
-                    .arg("-c")
-                    .arg(&command_clone)
-                    .output()
-                    .await;
-                
-                match output {
-                    Ok(output) => {
-                        let status = output.status;
-                        let stdout = String::from_utf8_lossy(&output.stdout).to_string();
-                        let stderr = String::from_utf8_lossy(&output.stderr).to_string();
-                        
-                        println!("Command completed with status: {}", status);
-                        println!("Output: {}", stdout);
-                        
-                        if !stderr.is_empty() {
-                            println!("Errors: {}", stderr);
-                        }
-                    },
-                    Err(e) => {
-                        println!("Failed to execute command: {}", e);
+            // Replace the action placeholder
+            command_str = command_str.replace("ACTION", &action.to_string());
+            
+            // Remove any quotes that would be interpreted literally by the shell
+            command_str = command_str.replace("\"./target/debug/Menu_Runner_system\"", "./target/debug/Menu_Runner_system");
+            command_str = command_str.replace("\"firefox", "firefox");
+            command_str = command_str.trim_end_matches('"').to_string();
+            
+            println!("Running command synchronously: {}", command_str);
+            
+            // Execute the command synchronously using std::process::Command
+            // This avoids the nested block_on issue
+            let output_result = Command::new("sh")
+                .arg("-c")
+                .arg(&command_str)
+                .output();
+            
+            match output_result {
+                Ok(output) => {
+                    let status = output.status;
+                    let stdout = String::from_utf8_lossy(&output.stdout).to_string();
+                    let stderr = String::from_utf8_lossy(&output.stderr).to_string();
+                    
+                    println!("Command completed with status: {}", status);
+                    println!("Output: {}", stdout);
+                    
+                    if !stderr.is_empty() {
+                        println!("Errors: {}", stderr);
                     }
+                },
+                Err(e) => {
+                    println!("Failed to execute command: {}", e);
                 }
-            });
+            }
         });
         
         println!("Starting UI...");

@@ -1,4 +1,4 @@
-import { VerticalBox, HorizontalBox, Button, ListView } from "std-widgets.slint";
+import { VerticalBox, HorizontalBox, Button, ListView, ScrollView } from "std-widgets.slint";
 
 export struct MenuEntry {
     label: string,
@@ -26,32 +26,37 @@ export component MainWindow inherits Window {
             background: #ccc;
         }
 
-        for menu_item in menu_items: VerticalBox {
-            Text {
-                text: menu_item.label;
-                font-size: 18px;
-                horizontal-alignment: TextHorizontalAlignment.center;
-                padding-top: 10px;
-                padding-bottom: 5px;
-            }
+        ScrollView {
+            // This ScrollView will allow scrolling through all menu items
+            VerticalBox {
+                for menu_item in menu_items: VerticalBox {
+                    Text {
+                        text: menu_item.label;
+                        font-size: 18px;
+                        horizontal-alignment: TextHorizontalAlignment.center;
+                        padding-top: 10px;
+                        padding-bottom: 5px;
+                    }
 
-            HorizontalBox {
-                alignment: LayoutAlignment.center;
-                spacing: 5px;
-                
-                for action in menu_item.actions: Button {
-                    text: action;
-                    clicked => {
-                        // Send both the command template and action to Rust
-                        // so it can properly replace <Action> with the action
-                        root.run_command(menu_item.command-template, action);
+                    HorizontalBox {
+                        alignment: LayoutAlignment.center;
+                        spacing: 5px;
+                        
+                        for action in menu_item.actions: Button {
+                            text: action;
+                            property <string> current-action: action;
+                            clicked => {
+                                // Explicitly use the action from the loop's current scope
+                                root.run_command(menu_item.command-template, self.current-action);
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        height: 1px;
+                        background: #eee;
                     }
                 }
-            }
-
-            Rectangle {
-                height: 1px;
-                background: #eee;
             }
         }
     }

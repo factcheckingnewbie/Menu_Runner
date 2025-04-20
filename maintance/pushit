@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+message="${1}"
+cargo clean 
+if [[ ${message} == "" ]]; then 
+   git push
+else 
+    git add .  && git commit -m "${message}" && git push 
+fi

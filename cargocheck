@@ -1,0 +1,3 @@
+#!/usr/bin/emv bash
+cargo clean 
+cargo check && cargo clean
