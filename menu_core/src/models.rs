@@ -22,3 +22,11 @@ pub struct CommandInfo {
     pub description: String,
     pub category: String,
 }
+
+/// Represents a menu entry for the Slint UI
+#[derive(Clone)]
+pub struct SlintMenuEntry {
+    pub label: String,
+    pub actions: Vec<String>,
+    pub command_template: String,
+}

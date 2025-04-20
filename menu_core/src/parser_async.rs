@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use crate::models::{CommandInfo, GroupedMenuEntry};
+use crate::models::{CommandInfo, GroupedMenuEntry, SlintMenuEntry};
 use std::path::Path;
 use tokio::fs as tokio_fs;
 
@@ -20,6 +20,7 @@ pub async fn load_menu_async() -> Vec<crate::models::CommandInfo> {
     }
 }
 
+// Parse the future_menu.txt format into CommandInfo objects
 fn parse_future_menu_format(content: &str) -> Vec<CommandInfo> {
     let mut commands = Vec::new();
     let mut current_label = String::new();
@@ -88,6 +89,51 @@ pub fn group_menu_commands(commands: &[CommandInfo]) -> HashMap<String, Vec<Comm
     
     println!("Grouped into {} categories", grouped.len());
     grouped
+}
+
+// Create Slint menu entries for the new GUI format
+pub fn create_slint_menu_entries(commands: &[CommandInfo]) -> Vec<SlintMenuEntry> {
+    let grouped = group_menu_commands(commands);
+    let mut result = Vec::new();
+    
+    for (category, cmds) in grouped {
+        if !cmds.is_empty() {
+            // Extract all actions for this category
+            let actions: Vec<String> = cmds.iter()
+                .map(|cmd| {
+                    let parts: Vec<&str> = cmd.name.split(' ').collect();
+                    if parts.len() > 1 {
+                        parts[parts.len() - 1].to_string()
+                    } else {
+                        cmd.name.clone()
+                    }
+                })
+                .collect();
+            
+            // Get the original command template from the first command
+            let first_cmd = &cmds[0];
+            let original_cmd = &first_cmd.command;
+            
+            // Store the original command with <Action> placeholder for Slint to use
+            // Keep the original command format with <Action> placeholder
+            let command_template = if original_cmd.contains("<Action>") {
+                original_cmd.clone()
+            } else {
+                // If <Action> is not found, use the command as-is
+                // This is a fallback, but the menu file should use <Action> placeholders
+                original_cmd.clone()
+            };
+            
+            // Create the SlintMenuEntry
+            result.push(SlintMenuEntry {
+                label: category,
+                actions,
+                command_template,
+            });
+        }
+    }
+    
+    result
 }
 
 // Build a list of GroupedMenuEntry objects for hierarchical display
