@@ -5,4 +5,6 @@ pub mod models;
 
 // Public exports
 pub use models::{MenuCommand, GroupedMenuEntry, CommandInfo, SlintMenuEntry};
-pub use parser_async::{load_menu_async, load_menu_json_async, extract_command_info, group_menu_commands, build_grouped_entries, create_slint_menu_entries};
+// pub use parser_async::{load_menu_async, load_menu_json_async, extract_command_info, group_menu_commands, build_grouped_entries, create_slint_menu_entries};
+pub use parser_async::{load_menu_async, load_menu_json_async, load_menu_yaml_async, extract_command_info, group_menu_commands, build_grouped_entries, create_slint_menu_entries};
+pub use parser_async::load_menu_with_button_manager;

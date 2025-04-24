@@ -4,13 +4,13 @@ use tokio::time::{sleep, Duration};
 use tokio::fs as tokio_fs;
 use std::io;
 
-async fn run_command(command: &str, args: &[&str]) -> io::Result<Vec<u8>> {
-    let output = Command::new(command)
-        .args(args)
-        .output()
-        .await?;
-    Ok(output.stdout)
-}
+// async fn run_command(command: &str, args: &[&str]) -> io::Result<Vec<u8>> {
+//     let output = Command::new(command)
+//         .args(args)
+//         .output()
+//         .await?;
+//     Ok(output.stdout)
+// }
 
 async fn app_start(app: &str, profile: &str, profile_part: &str) {
     let user = env::var("USER").unwrap_or_else(|_| "unknown".to_string());

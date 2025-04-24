@@ -1,5 +1,0 @@
-start
-freeze
-unfreeze
-kill
-
