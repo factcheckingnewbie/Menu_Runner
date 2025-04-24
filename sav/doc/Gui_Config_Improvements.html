@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">`
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI Configuration Improvements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        h1 {
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+    </style>
+</head>
+<body>
+    <h1>GUI Configuration Improvements</h1>
+
+    <h2>SimpleThemeInterface Implementation</h2>
+    <p>The SimpleThemeInterface approach separates menu functionality from theme colors, providing a more maintainable and extensible configuration system.</p>
+
+    <h3>Core Components</h3>
+    <ol>
+        <li>
+            <strong>Menu Structure File</strong> (<code>future_menu.json</code>)
+            <ul>
+                <li>Contains purely functional menu data</li>
+                <li>Defines button behaviors and state transitions</li>
+                <li>Specifies which profiles have which action buttons</li>
+                <li>Tracks current state of each profile</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Theme Configuration File</strong> (<code>ui_colors.json</code>)
+            <ul>
+                <li>Contains all visual styling information</li>
+                <li>Defines colors for different states</li>
+                <li>Specifies button highlighting colors</li>
+                <li>Can be replaced/modified without affecting menu functionality</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Implementation Details</h3>
+    
+    <h4>Menu Structure Format</h4>
+    <pre><code>{
+  "button_types": {
+    "start": {
+      "applicable_states": ["stopped", "killed"],
+      "next_state": "started"
+    },
+    "freeze": {
+      "applicable_states": ["started"],
+      "next_state": "frozen"
+    },
+    "unfreeze": {
+      "applicable_states": ["frozen"],
+      "next_state": "started" 
+    },
+    "kill": {
+      "applicable_states": ["started", "frozen"],
+      "next_state": "killed"
+    }
+  },
+  "profiles": [
+    {
+      "label": "ProfileName",
+      "current_state": "stopped",
+      "actions": ["start", "freeze", "unfreeze", "kill"]
+    }
+  ],
+  "groups": [
+    {
+      "name": "GroupName",
+      "profiles": ["ProfileName1", "ProfileName2"]
+    }
+  ]
+}</code></pre>
+
+    <h4>Theme Configuration Format</h4>
+    <pre><code>{
+  "states": {
+    "stopped": {
+      "label_color": "#E0BC00"
+    },
+    "started": {
+      "label_color": "#FFD32C" 
+    },
+    "frozen": {
+      "label_color": "#E0BC00"
+    },
+    "killed": {
+      "label_color": "#E0BC00"
+    }
+  },
+  "button_types": {
+    "start": {
+      "highlight_color": "#00AA00",
+      "inactive_color": "#005500"
+    },
+    "freeze": {
+      "highlight_color": "#0000AA",
+      "inactive_color": "#000055"
+    },
+    "unfreeze": {
+      "highlight_color": "#00AAAA",
+      "inactive_color": "#005555"
+    },
+    "kill": {
+      "highlight_color": "#AA0000",
+      "inactive_color": "#550000"
+    }
+  }
+}</code></pre>
+
+    <h3>Benefits</h3>
+    <ol>
+        <li>
+            <strong>Maintainability</strong>
+            <ul>
+                <li>Theme changes don't require regenerating the menu structure</li>
+                <li>Clear separation of concerns (menu logic vs. presentation)</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Flexibility</strong>
+            <ul>
+                <li>Different profiles can have different button sets</li>
+                <li>Menu structure can evolve independently of visual design</li>
+                <li>Supports future hierarchy through groups concept</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Future Extensibility</strong>
+            <ul>
+                <li>Foundation for dynamic theme switching</li>
+                <li>Support for sub-menus through the groups concept</li>
+                <li>Potential for user-customizable themes</li>
+            </ul>
+        </li>
+    </ol>
+</body>
+</html>

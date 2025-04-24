@@ -1,0 +1,163 @@
+# Menu configuration - Firefox profiles
+- label: "AI-chat-Behavior"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.AI-chat-Behavior"
+
+- label: "AI-Chatt"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.AI-Chatt"
+
+- label: "AI_Suite"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.AI_Suite"
+
+- label: "config_firefox"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.config_firefox"
+
+- label: "Development_Read"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Development_Read"
+
+- label: "Github"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Github"
+
+- label: "Grafikkort"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+    - toggled
+    - untoggled
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Grafikkort"
+
+- label: "Gui-Rust"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Gui-Rust"
+
+- label: "Interfaces"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Interfaces"
+
+- label: "Media"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Media"
+
+- label: "Menu_Runner"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Menu_Runner"
+
+- label: "Misc"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Misc"
+
+- label: "Models"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Models"
+
+- label: "MumLar"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.MumLar"
+
+- label: "python-Async"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.python-Async"
+
+- label: "remoteAccess"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.remoteAccess"
+
+- label: "Slask"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Slask"
+
+- label: "Slint"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Slint"
+
+- label: "Tmp"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Tmp"
+
+- label: "VibeCoding"
+  actions:
+    - start
+    - freeze
+    - unfreeze
+    - kill
+  command: "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.VibeCoding"
+
