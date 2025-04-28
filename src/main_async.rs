@@ -7,10 +7,9 @@ use std::sync::Mutex;
 slint::include_modules!();
 use slint::{ModelRc, VecModel, SharedString};
 use tokio::runtime::Runtime;
-// use tokio::process::Command as TokioCommand;
+
 // Import the core types from our menu_core library
- use Menu_Runner_core::create_slint_menu_entries;
-// use Menu_Runner_core::{create_slint_menu_entries, models::ButtonManager};
+use Menu_Runner_core::create_slint_menu_entries;
 
 fn main() {
     // Create the runtime with all features enabled
@@ -19,15 +18,20 @@ fn main() {
     // Enter the runtime context
     rt.block_on(async {
         println!("Starting async menu loader...");
-// Load menu asynchronously from the JSON menu file (changed from txt)
-//        let commands = Menu_Runner_core::load_menu_json_async().await;
-//        let commands = Menu_Runner_core::load_menu_yaml_async().await;        
-// Load menu and button manager
-        let (commands, button_manager) = Menu_Runner_core::load_menu_with_button_manager().await;
+
+        // Load menu and button manager - properly handle the Result type
+        let (commands, button_manager) = match Menu_Runner_core::load_menu_with_button_manager().await {
+            Ok((cmds, manager)) => (cmds, manager),
+            Err(e) => {
+                println!("Error loading menu with button manager: {}", e);
+                (Vec::new(), Menu_Runner_core::ButtonManager::new())
+            }
+        };
+        
         let button_manager = Rc::new(Mutex::new(button_manager));
+        
         if commands.is_empty() {
-           // println!("No valid menu items found. Please check your configs/future_menu.json format.");
-           println!("No valid menu items found. Please check your configs/menu_config.yaml format.");
+           println!("No valid menu items found. Please check your configs/menu_config_color.yaml format.");
            return;
         }
 
@@ -63,37 +67,49 @@ fn main() {
         // Connect the menu_items property in your Slint UI to our model
         main_window.set_menu_items(ModelRc::from(menu_model.clone()));
         
-        // Set up button color provider callback
+        // Set up button color provider callback using the state machine
         let button_manager_colors = button_manager.clone();
-        main_window.on_get_button_color(move |profile, action| {
+        main_window.on_get_button_color(move |profile, _action| {
             let manager = button_manager_colors.lock().unwrap();
-            manager.get_button_color(&profile.to_string(), &action.to_string()).into()
+            // Get the profile's current background color from state machine
+            let color = manager.get_background_color(&profile.to_string());
+            color.into()
         });
-        let button_manager_click = button_manager.clone();
-
-
+        
         // Set up command handler for when action buttons are clicked
+        let button_manager_click = button_manager.clone();
         main_window.on_run_command(move |command_template, action| {
-            // Get the command template and replace the action placeholder
-            let mut command_str = command_template.to_string();
-             // Extract profile name from command template
-            let profile_name = {
-                let parts: Vec<&str> = command_str.split('/').collect();
+            let profile_name: String = {
+                // Create a variable for the string to extend its lifetime
+                let cmd_str = command_template.to_string();
+                let parts: Vec<&str> = cmd_str.split('/').collect();
+                
                 if let Some(last) = parts.last() {
-                    last.split('.').nth(1).unwrap_or("").to_string()
+                    // Extract profile from filename pattern
+                    if let Some(filename) = last.split('.').nth(1) {
+                        filename.to_string()
+                    } else {
+                        // Extract label from path as fallback
+                        parts.iter()
+                            .rev()
+                            .skip(1)
+                            .next()
+                            .unwrap_or(&"unknown")
+                            .to_string()
+                    }
                 } else {
-                    "".to_string()
+                    "unknown".to_string()
                 }
             };
              
-             // Update button visual state
-             {
-                 let mut manager = button_manager_click.lock().unwrap();
-                 manager.press_button(&profile_name, &action.to_string());
-             }
+            // Update button visual state using state machine
+            {
+                let mut manager = button_manager_click.lock().unwrap();
+                manager.press_button(&profile_name, &action.to_string());
+            }
                          
-            // Replace the action placeholder
-            command_str = command_str.replace("ACTION", &action.to_string());
+            // Replace the action placeholder - FIXED: Replace {ACTION} instead of just ACTION
+            let mut command_str = command_template.to_string().replace("{ACTION}", &action.to_string());
 
             // Remove any quotes that would be interpreted literally by the shell
             command_str = command_str.replace("\"./target/debug/Menu_Runner_system\"", "./target/debug/Menu_Runner_system");
@@ -103,7 +119,6 @@ fn main() {
             println!("Running command synchronously: {}", command_str);
 
             // Execute the command synchronously using std::process::Command
-            // This avoids the nested block_on issue
             let output_result = Command::new("sh")
                 .arg("-c")
                 .arg(&command_str)
@@ -129,11 +144,10 @@ fn main() {
         });
 
         println!("Starting UI...");
-        // Notify UI to refresh button colors if needed
+        // Notify UI to refresh button colors
         main_window.invoke_refresh();
         
         // Run the UI loop (this blocks the current thread until UI is closed)
         main_window.run().unwrap();
-
     });
 }

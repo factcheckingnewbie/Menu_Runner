@@ -1,0 +1,297 @@
+{
+  "menu_items": [
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.0",
+      "label": "0"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.AI-chat-Behavior",
+      "label": "AI-chat-Behavior"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.AI-Chatt",
+      "label": "AI-Chatt"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.AI_Suite",
+      "label": "AI_Suite"
+    },
+    {
+      "actions": {
+        "kill": {}
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.config_firefox",
+      "label": "config_firefox"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Development_Read",
+      "label": "Development_Read"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Docker",
+      "label": "Docker"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Github",
+      "label": "Github"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Grafikkort",
+      "label": "Grafikkort"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Gui-Rust",
+      "label": "Gui-Rust"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Interfaces",
+      "label": "Interfaces"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Media",
+      "label": "Media"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Menu_Runner",
+      "label": "Menu_Runner"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Misc",
+      "label": "Misc"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Models",
+      "label": "Models"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.MumLar",
+      "label": "MumLar"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.python-Async",
+      "label": "python-Async"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.remoteAccess",
+      "label": "remoteAccess"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Slask",
+      "label": "Slask"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Slint",
+      "label": "Slint"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Socialt",
+      "label": "Socialt"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.Tmp",
+      "label": "Tmp"
+    },
+    {
+      "actions": {
+        "kill": {},
+        "start": {
+          "freeze_toggle": [
+            "freeze",
+            "unfreeze"
+          ]
+        }
+      },
+      "command": "./target/debug/Menu_Runner_system ACTION firefox /home/ptr/Stuff/Settings/firefox/0.VibeCoding",
+      "label": "VibeCoding"
+    }
+  ]
+}

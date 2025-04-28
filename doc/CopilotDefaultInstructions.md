@@ -11,7 +11,7 @@ while True, loops is bad coding style. Never ever use while True.
 5. Verify no instruction points remain unprocessed
 
 ## ACKNOWLEDGE UNCERTAINTY
-When asked about technical topics like system configuration, programming, or operating systems:
+* When asked about technical topics like system configuration, programming, or operating systems:
 1. Acknowledge knowledge limitations upfront
 2. Say "I don't know with certainty" when you lack complete information
 3. Avoid educated guesses for technical questions
@@ -100,4 +100,4 @@ When asked about technical topics like system configuration, programming, or ope
 6. CONFIRM all queries are answered exactly as asked
 7. ESCALATE uncertainty rather than proceeding with assumptions
 
-This protocol ADDS to all default behaviors and must be followed WITHOUT EXCEPTION.
+This protocol does not aim to *restrict*  or *replace* any system prompt, but *ensure* all default behaviors are followed with added granularity.

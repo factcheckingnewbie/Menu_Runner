@@ -1,0 +1,714 @@
+menu_items:
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.0
+    label: "0"
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.AI-chat-Behavior
+    label: AI-chat-Behavior
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.AI-Chatt
+    label: AI-Chatt
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.AI_Suite
+    label: AI_Suite
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.config_firefox
+    label: config_firefox
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions: 
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Development_Read
+    label: Development_Read
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Docker
+    label: Docker
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Github
+    label: Github
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Grafikkort
+    label: Grafikkort
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Gui-Rust
+    label: Gui-Rust
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Interfaces
+    label: Interfaces
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Media
+    label: Media
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Menu_Runner
+    label: Menu_Runner
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Misc
+    label: Misc
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Models
+    label: Models
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.MumLar
+    label: MumLar
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.python-Async
+    label: python-Async
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.remoteAccess
+    label: remoteAccess
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Slask
+    label: Slask
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Slint
+    label: Slint
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Socialt
+    label: Socialt
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.Tmp
+    label: Tmp
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.VibeCoding
+    label: VibeCoding
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: '#2E2E2E'
+            fg: '#D3D3D3'
+          transitions:
+            start: started
+        frozen:
+          display:
+            bg: '#ADD8E6'
+            fg: '#000000'
+          transitions:
+            kill: killed
+            unfreeze: started
+        killed:
+          display:
+            bg: '#8B0000'
+            fg: '#FFFFFF'
+          transitions:
+            start: started
+        started:
+          display:
+            bg: '#228B22'
+            fg: '#FFFFFF'
+          transitions:
+            freeze: frozen
+            kill: killed

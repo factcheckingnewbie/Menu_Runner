@@ -1,0 +1,36 @@
+menu_items:
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.0
+    label: "0"
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: "#2E2E2E"
+            fg: "#D3D3D3"
+          transitions:
+            start: active
+        active:
+          display:
+            bg: "#007BFF" 
+            fg: "#FFFFFF"
+          transitions:
+            stop: default
+  
+  - command_template: ./target/debug/Menu_Runner_system {ACTION} firefox /home/ptr/Stuff/Settings/firefox/0.AI-chat-Behavior
+    label: AI-chat-Behavior
+    state_machine:
+      initial_state: default
+      states:
+        default:
+          display:
+            bg: "#2E2E2E"
+            fg: "#D3D3D3"
+          transitions:
+            start: active
+        active:
+          display:
+            bg: "#28A745"
+            fg: "#FFFFFF"
+          transitions:
+            stop: default
