@@ -173,14 +173,19 @@ pub async fn load_menu_with_button_manager() -> Result<(Vec<CommandInfo>, Button
     let mut commands = Vec::new();
     
     for item in &config.menu_items {
-        // Extract available actions from the state machine transitions
+        // Extract ALL available actions from ALL states' transitions
         let mut actions = Vec::new();
         
-        if let Some(default_state) = item.state_machine.states.get(&item.state_machine.initial_state) {
-            for action in default_state.transitions.keys() {
-                actions.push(action.clone());
+        // Collect actions from all states, not just default state
+        for (_state_name, state) in &item.state_machine.states {
+            for action in state.transitions.keys() {
+                if !actions.contains(action) {
+                    actions.push(action.clone());
+                }
             }
         }
+        
+        println!("Found {} actions for menu item: {}", actions.len(), item.label);
         
         // Create CommandInfo objects from the actions
         for action in &actions {

@@ -1,24 +1,10 @@
 /// menu_core/src/models.rs
 /// Represents a single menu command entry
 use std::collections::HashMap;
-use serde::{Deserialize, Serialize};
-#[derive(Clone)]
-pub struct MenuCommand {
-    pub name: String,
-    pub command: String,
-}
+use serde::{Serialize, Deserialize};
 
-/// Represents a grouped menu entry with multiple actions
-pub struct GroupedMenuEntry {
-    pub program: String,
-    pub path_name: String,
-    pub actions: Vec<String>,
-    pub commands: Vec<String>,
-}
-
-/// Represents detailed command information with category and description
-/// #[derive(Clone)]
-#[derive(Clone, Serialize, Deserialize)]
+// Basic Command Information structure
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CommandInfo {
     pub name: String,
     pub command: String,
@@ -26,65 +12,62 @@ pub struct CommandInfo {
     pub category: String,
 }
 
-/// Represents a menu entry for the Slint UI
-#[derive(Clone)]
+// Structure for grouped menu entries
+pub struct GroupedMenuEntry {
+    pub program: String,
+    pub path_name: String,
+    pub actions: Vec<String>,
+    pub commands: Vec<String>,
+}
+
+// Structure for Slint menu entries
+#[derive(Debug, Clone)]
 pub struct SlintMenuEntry {
     pub label: String,
     pub actions: Vec<String>,
     pub command_template: String,
 }
 
-/// State display properties
-#[derive(Clone, Serialize, Deserialize, Debug)]
-pub struct StateDisplay {
-    pub bg: String,
-    pub fg: String,
-}
-
-/// State definition with display properties and transitions
-#[derive(Clone, Serialize, Deserialize, Debug)]
+// State in the state machine
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct State {
-    pub display: StateDisplay,
     pub transitions: HashMap<String, String>,
+    #[serde(default)]  // Make style field optional with default empty HashMap
+    pub style: HashMap<String, String>,
 }
 
-/// State machine definition
-#[derive(Clone, Serialize, Deserialize, Debug)]
+impl State {
+    // Helper method to get color with default
+    pub fn get_color(&self) -> String {
+        self.style.get("color").cloned().unwrap_or_else(|| "#007BFF".to_string())
+    }
+}
+
+// State machine definition
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StateMachine {
     pub initial_state: String,
     pub states: HashMap<String, State>,
 }
 
-/// Menu item config with state machine
-#[derive(Clone, Serialize, Deserialize, Debug)]
+// Menu item configuration
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MenuItemConfig {
-    pub command_template: String,
     pub label: String,
+    pub command_template: String,
     pub state_machine: StateMachine,
 }
 
-/// Complete menu configuration
-#[derive(Clone, Serialize, Deserialize, Debug)]
+// Overall menu configuration
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MenuConfig {
     pub menu_items: Vec<MenuItemConfig>,
 }
 
-/// Button state manager to track button visual states
-#[derive(Clone)]
+// Button manager that tracks button states
 pub struct ButtonManager {
-    // Maps "profile:button" -> state (true = down/active)
-    pub button_states: HashMap<String, bool>,
-    
-    // Maps "profile" -> current_state
-    pub profile_states: HashMap<String, String>,
-    
-    // Cache of button colors
+    pub button_states: HashMap<String, String>,
     pub button_colors: HashMap<String, String>,
-    
-    // Maps button key to list of buttons it affects
-    pub button_affects: HashMap<String, Vec<String>>,
-    
-    // Reference to menu configuration
     pub menu_config: Option<MenuConfig>,
 }
 
@@ -92,142 +75,145 @@ impl ButtonManager {
     pub fn new() -> Self {
         ButtonManager {
             button_states: HashMap::new(),
-            profile_states: HashMap::new(),
             button_colors: HashMap::new(),
-            button_affects: HashMap::new(),
             menu_config: None,
         }
     }
-    
-    // Initialize from menu config
+
+    pub fn make_key(profile: &str, action: &str) -> String {
+        format!("{}:{}", profile, action)
+    }
+
     pub fn from_menu_config(config: MenuConfig) -> Self {
-        let mut manager = Self::new();
+        let mut manager = ButtonManager::new();
         manager.menu_config = Some(config.clone());
         
-        // Initialize states and colors for all menu items
+        // Initialize button states based on the menu config
         for item in &config.menu_items {
-            // Set initial state for this profile
-            manager.profile_states.insert(item.label.clone(), item.state_machine.initial_state.clone());
-            
-            // Set initial colors based on initial state
-            if let Some(state) = item.state_machine.states.get(&item.state_machine.initial_state) {
-                // Store colors for this profile
-                manager.set_profile_colors(&item.label, &state.display.bg, &state.display.fg);
-            }
-        }
-        
-        manager
-    }
-    
-    // Create a unique key for a profile+button
-    pub fn make_key(profile: &str, button: &str) -> String {
-        format!("{}:{}", profile, button)
-    }
-    
-    // Set colors for a profile
-    fn set_profile_colors(&mut self, profile: &str, bg: &str, fg: &str) {
-        let bg_key = Self::make_key(profile, "bg");
-        let fg_key = Self::make_key(profile, "fg");
-        
-        self.button_colors.insert(bg_key, bg.to_string());
-        self.button_colors.insert(fg_key, fg.to_string());
-    }
-    
-    // Process a button action according to state machine rules
-    pub fn press_button(&mut self, profile: &str, action: &str) -> bool {
-        // First, extract all the needed data from the config to avoid borrowing conflicts
-        let transition_data = {
-            // Get the menu configuration
-            let config = match &self.menu_config {
-                Some(config) => config,
-                None => return false, // Can't process without config
-            };
-            
-            // Find the menu item for this profile
-            let item_config = match config.menu_items.iter().find(|item| item.label == profile) {
-                Some(item) => item,
-                None => return false, // Profile not found
-            };
-            
-            // Get current state for this profile
-            let current_state = self.profile_states.get(profile)
-                .unwrap_or(&item_config.state_machine.initial_state)
-                .clone();
-            
-            // Check if this state has the requested transition
-            if let Some(state) = item_config.state_machine.states.get(&current_state) {
-                if let Some(next_state) = state.transitions.get(action) {
-                    // Look up the next state for its display properties
-                    if let Some(new_state) = item_config.state_machine.states.get(next_state) {
-                        // Return the data we need for the transition
-                        Some((
-                            next_state.clone(),
-                            new_state.display.bg.clone(),
-                            new_state.display.fg.clone()
-                        ))
-                    } else {
-                        None // Next state not defined
-                    }
-                } else {
-                    None // Transition not found
-                }
-            } else {
-                None // Current state not defined
-            }
-        };
-        
-        // Now perform the transition if we found valid data
-        if let Some((next_state, bg, fg)) = transition_data {
-            // Apply the transition with our extracted data
-            self.profile_states.insert(profile.to_string(), next_state);
-            self.set_profile_colors(profile, &bg, &fg);
-            true
-        } else {
-            false
-        }
-    }
-    
-    // Get current state for a profile
-    pub fn get_current_state(&self, profile: &str) -> Option<String> {
-        self.profile_states.get(profile).cloned()
-    }
-    
-    // Get background color for a profile
-    pub fn get_background_color(&self, profile: &str) -> String {
-        let key = Self::make_key(profile, "bg");
-        self.button_colors.get(&key).cloned().unwrap_or_else(|| "#2E2E2E".to_string())
-    }
-    
-    // Get foreground color for a profile
-    pub fn get_foreground_color(&self, profile: &str) -> String {
-        let key = Self::make_key(profile, "fg");
-        self.button_colors.get(&key).cloned().unwrap_or_else(|| "#D3D3D3".to_string())
-    }
-    
-    // Get color for a button (legacy method for compatibility)
-    pub fn get_button_color(&self, profile: &str, _button: &str) -> String {
-        // Return the background color for the profile's current state
-        self.get_background_color(profile)
-    }
-    
-    // Get available actions for the current state
-    pub fn get_available_actions(&self, profile: &str) -> Vec<String> {
-        let mut actions = Vec::new();
-        
-        // Get configuration and current state
-        if let Some(config) = &self.menu_config {
-            if let Some(item) = config.menu_items.iter().find(|item| item.label == profile) {
-                if let Some(current_state) = self.get_current_state(profile) {
-                    if let Some(state) = item.state_machine.states.get(&current_state) {
-                        // Add all transitions from current state
-                        for action in state.transitions.keys() {
-                            actions.push(action.clone());
+            for (_state_name, state) in &item.state_machine.states {
+                for (action, _next_state) in &state.transitions {
+                    let key = Self::make_key(&item.label, action);
+                    manager.button_states.insert(key.clone(), item.state_machine.initial_state.clone());
+                    
+                    // Set default color if defined in the state style
+                    if let Some(initial_state) = item.state_machine.states.get(&item.state_machine.initial_state) {
+                        if let Some(color) = initial_state.style.get("color") {
+                            manager.button_colors.insert(key.clone(), color.clone());
+                        } else {
+                            manager.button_colors.insert(key.clone(), "#007BFF".to_string());
                         }
                     }
                 }
             }
         }
         
-        actions
+        manager
+    }
+
+    pub fn press_button(&mut self, profile: &str, action: &str) {
+        let key = Self::make_key(profile, action);
+        
+        if let Some(config) = &self.menu_config {
+            for item in &config.menu_items {
+                if item.label == profile {
+                    // Get the current state for this button
+                    let current_state = self.button_states.get(&key).unwrap_or(&item.state_machine.initial_state).clone();
+                    
+                    // Find the transition for this action
+                    if let Some(state) = item.state_machine.states.get(&current_state) {
+                        if let Some(next_state) = state.transitions.get(action) {
+                            // Update the button state
+                            println!("Button state changed: {} -> {}", current_state, next_state);
+                            self.button_states.insert(key.clone(), next_state.clone());
+                            
+                            // Update button color if specified in the state style
+                            if let Some(next_state_def) = item.state_machine.states.get(next_state) {
+                                if let Some(color) = next_state_def.style.get("color") {
+                                    self.button_colors.insert(key.clone(), color.clone());
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    // Corrected get_action_color method that uses existing fields
+    pub fn get_action_color(&self, profile: &str, action: &str) -> String {
+        let key = Self::make_key(profile, action);
+        
+        // Get the current state name for this profile+action using button_states
+        let state_name = self.button_states
+            .get(&key)
+            .cloned()
+            .unwrap_or_else(|| "default".to_string());
+        
+        // Check if we already have a color stored
+        if let Some(color) = self.button_colors.get(&key) {
+            return color.clone();
+        }
+        
+        // Try to get color from state machine if configuration exists
+        if let Some(config) = &self.menu_config {
+            // Find the menu item for this profile
+            for item in &config.menu_items {
+                if item.label == profile {
+                    // If we found the profile, look for the current state
+                    if let Some(state) = item.state_machine.states.get(&state_name) {
+                        return state.get_color();
+                    }
+                }
+            }
+        }
+        
+        // Default color when nothing is found
+        "#007BFF".to_string()
+    }
+    
+    // Dummy background color method - for future use
+    pub fn get_background_color(&self, _profile: &str) -> String {
+        // This is a placeholder that returns a constant now
+        // but can be expanded later to use actual background colors
+        "#FFFFFF".to_string()
+    }
+    
+    // Future method for extended color scheme support - stub for now
+    pub fn get_extended_colors(&self, _profile: &str, _action: &str) -> HashMap<String, String> {
+        // This returns a minimal set of colors that could be extended later
+        let mut colors = HashMap::new();
+        colors.insert("primary".to_string(), "#007BFF".to_string());
+        colors.insert("hover".to_string(), "#0069D9".to_string());
+        colors.insert("pressed".to_string(), "#0062CC".to_string());
+        colors
+    }
+
+    // Add this new method
+    pub fn get_available_actions(&self, profile: &str) -> Vec<String> {
+        if let Some(config) = &self.menu_config {
+            // Find the menu item for this profile
+            for item in &config.menu_items {
+                if item.label == profile {
+                    // First find the current state for any button in this profile
+                    let mut current_state = item.state_machine.initial_state.clone();
+                    
+                    // Look for any button from this profile to get its current state
+                    for (key, state) in &self.button_states {
+                        if key.starts_with(&format!("{}:", profile)) {
+                            current_state = state.clone();
+                            break;
+                        }
+                    }
+                    
+                    // Now get transitions available from this state
+                    if let Some(state) = item.state_machine.states.get(&current_state) {
+                        return state.transitions.keys().cloned().collect();
+                    }
+                }
+            }
+        }
+        
+        Vec::new() // No transitions found
     }
 }

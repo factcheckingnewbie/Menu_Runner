@@ -2,6 +2,7 @@
 use std::rc::Rc;
 use std::process::Command;
 use std::sync::Mutex;
+use std::collections::HashMap;
 
 // Include the Slint modules defined in your .slint files
 slint::include_modules!();
@@ -41,44 +42,63 @@ fn main() {
         let slint_entries = create_slint_menu_entries(&commands);
         println!("Created {} menu entries for the UI", slint_entries.len());
 
-        // Convert SlintMenuEntry objects to the Slint UI format
-        let menu_entries: Vec<MenuEntry> = slint_entries.iter().map(|entry| {
-            // Convert the Rust types to Slint-compatible types
-            let actions_vec: Vec<SharedString> = entry.actions.iter()
-                .map(|a| a.clone().into())
-                .collect();
-
-            // Create a VecModel from the actions and convert it to ModelRc
-            let actions_model = Rc::new(VecModel::from(actions_vec));
-
-            MenuEntry {
-                label: entry.label.clone().into(),
-                actions: ModelRc::from(actions_model),
-                command_template: entry.command_template.clone().into(),
-            }
-        }).collect();
-
-        // Create the Slint model that will hold our menu entries
-        let menu_model = Rc::new(VecModel::from(menu_entries));
+        // Keep track of all possible actions per profile
+        let mut all_actions_by_profile: HashMap<String, Vec<String>> = HashMap::new();
+        for entry in &slint_entries {
+            all_actions_by_profile.insert(entry.label.clone(), entry.actions.clone());
+        }
 
         // Create the main window from your Slint UI definition
         let main_window = MainWindow::new().unwrap();
-
-        // Connect the menu_items property in your Slint UI to our model
+        
+        // Function to build menu model with only available actions
+        let build_menu_model = move |button_manager: &std::sync::MutexGuard<'_, Menu_Runner_core::ButtonManager>| {
+            let menu_entries: Vec<MenuEntry> = slint_entries.iter().map(|entry| {
+                // Get only available actions for current state
+                let available_actions = button_manager.get_available_actions(&entry.label);
+                
+                // Make sure we only include actions that exist in our UI
+                let filtered_actions: Vec<String> = all_actions_by_profile.get(&entry.label)
+                    .unwrap_or(&Vec::new())
+                    .iter()
+                    .filter(|a| available_actions.contains(a))
+                    .cloned()
+                    .collect();
+                
+                // Convert to SharedString for Slint
+                let actions_vec: Vec<SharedString> = filtered_actions.iter()
+                    .map(|a| a.clone().into())
+                    .collect();
+                
+                // Create a VecModel from the actions and convert it to ModelRc
+                let actions_model = Rc::new(VecModel::from(actions_vec));
+                
+                MenuEntry {
+                    label: entry.label.clone().into(),
+                    actions: ModelRc::from(actions_model),
+                    command_template: entry.command_template.clone().into(),
+                }
+            }).collect();
+            
+            Rc::new(VecModel::from(menu_entries))
+        };
+        
+        // Initial menu model
+        let menu_model = build_menu_model(&button_manager.lock().unwrap());
         main_window.set_menu_items(ModelRc::from(menu_model.clone()));
         
-        // Set up button color provider callback using the state machine
-        let button_manager_colors = button_manager.clone();
-        main_window.on_get_button_color(move |profile, _action| {
-            let manager = button_manager_colors.lock().unwrap();
-            // Get the profile's current background color from state machine
-            let color = manager.get_background_color(&profile.to_string());
-            color.into()
+        // Set up button color provider callback - simplified to avoid unnecessary calculations
+        main_window.on_get_button_color(move |_profile, _action| {
+            // Since UI doesn't use colors anymore, return a simple default
+            // This maintains compatibility with the callback signature
+            "#007BFF".into()
         });
         
         // Set up command handler for when action buttons are clicked
         let button_manager_click = button_manager.clone();
+        let weak_window = main_window.as_weak();
         main_window.on_run_command(move |command_template, action| {
+            // Extract profile from command template
             let profile_name: String = {
                 // Create a variable for the string to extend its lifetime
                 let cmd_str = command_template.to_string();
@@ -102,12 +122,14 @@ fn main() {
                 }
             };
              
+            println!("Executing action '{}' for profile '{}'", action, profile_name);
+            
             // Update button visual state using state machine
             {
                 let mut manager = button_manager_click.lock().unwrap();
                 manager.press_button(&profile_name, &action.to_string());
             }
-                         
+                 
             // Replace the action placeholder - FIXED: Replace {ACTION} instead of just ACTION
             let mut command_str = command_template.to_string().replace("{ACTION}", &action.to_string());
 
@@ -116,9 +138,9 @@ fn main() {
             command_str = command_str.replace("\"firefox", "firefox");
             command_str = command_str.trim_end_matches('"').to_string();
 
-            println!("Running command synchronously: {}", command_str);
+            println!("Running command: {}", command_str);
 
-            // Execute the command synchronously using std::process::Command
+            // Execute the command
             let output_result = Command::new("sh")
                 .arg("-c")
                 .arg(&command_str)
@@ -127,27 +149,23 @@ fn main() {
             match output_result {
                 Ok(output) => {
                     let status = output.status;
-                    let stdout = String::from_utf8_lossy(&output.stdout).to_string();
-                    let stderr = String::from_utf8_lossy(&output.stderr).to_string();
-
                     println!("Command completed with status: {}", status);
-                    println!("Output: {}", stdout);
-
-                    if !stderr.is_empty() {
-                        println!("Errors: {}", stderr);
-                    }
                 },
                 Err(e) => {
                     println!("Failed to execute command: {}", e);
                 }
             }
+            
+            // Rebuild the menu model with updated states
+            let new_menu_model = build_menu_model(&button_manager_click.lock().unwrap());
+            
+            // Update the UI with the new menu model on state change
+            if let Some(window) = weak_window.upgrade() {
+                window.set_menu_items(ModelRc::from(new_menu_model));
+            }
         });
 
         println!("Starting UI...");
-        // Notify UI to refresh button colors
-        main_window.invoke_refresh();
-        
-        // Run the UI loop (this blocks the current thread until UI is closed)
         main_window.run().unwrap();
     });
 }

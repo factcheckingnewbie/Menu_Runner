@@ -132,8 +132,7 @@ menu_items:
           display:
             bg: '#2E2E2E'
             fg: '#D3D3D3'
-          transitions: 
-            start: started
+          transitions: {}
         frozen:
           display:
             bg: '#ADD8E6'

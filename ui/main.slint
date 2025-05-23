@@ -1,9 +1,24 @@
-import { VerticalBox, HorizontalBox, Button, ListView, ScrollView } from "std-widgets.slint";
+import { Button, VerticalBox, HorizontalBox, ListView, ScrollView } from "std-widgets.slint";
 
 export struct MenuEntry {
     label: string,
     actions: [string],
     command-template: string,
+}
+
+// Simple button component without color styling
+component StateButton inherits Button {
+    in property<string> action;
+    in property<string> profile;
+    
+    // Display button text based on action
+    text: root.action;
+    primary: true;
+    
+    // Basic sizing
+    padding: 8px;
+    height: 30px;
+    min-width: 75px;
 }
 
 export component MainWindow inherits Window {
@@ -12,12 +27,11 @@ export component MainWindow inherits Window {
     height: 500px;
 
     callback run_command(string, string);
-    callback get_button_color(string, string) -> string;
+    callback get_button_color(string, string) -> string; // Keep interface for compatibility
     callback refresh();    
     in property <[MenuEntry]> menu_items;
-    // Function to trigger UI refresh
- //   public function trigger_refresh() {
-  public function trigger_refresh() {    
+    
+    public function trigger_refresh() {    
         self.refresh();
     }
     
@@ -25,59 +39,44 @@ export component MainWindow inherits Window {
         Text {
             text: "Menu Runner";
             font-size: 24px;
-            color: #4af;
-            horizontal-alignment: TextHorizontalAlignment.center;
+            horizontal-alignment: center;
         }
 
         Rectangle {
             height: 3px;
             background: #ccc;
         }
-// ////////////
-// Button {
-//       text: is-toggled ? "toggled" : "untoggled";
-//       width: 120px;
-//       checkable: true;
-//       height: 40px;
-//
-//       clicked => {
-//           is-toggled = !is-toggled;
-//
-//       }
-//   }
-// ////////////
+
         ScrollView {
-            // This ScrollView will allow scrolling through all menu items
             VerticalBox {
                 for menu_item in menu_items: VerticalBox {
+                    // Menu item heading
                     Text {
                         text: menu_item.label;
                         font-size: 18px;
-                        horizontal-alignment: TextHorizontalAlignment.center;
+                        horizontal-alignment: center;
                         padding-top: 10px;
                         padding-bottom: 5px;
-                        color: #4cf;
                     }
 
+                    // Row of action buttons
                     HorizontalBox {
-                        alignment: LayoutAlignment.center;
+                        alignment: center;
                         spacing: 3px;
 
-
-                        property <bool> is-toggled: false;
-                        for action in menu_item.actions: Button {
-                            // text: action;
-                            text: is-toggled ? "toggled" : action ;
-                            checkable: true;
-                            property <string> current-action: action;
+                        for action in menu_item.actions: StateButton {
+                            action: action;
+                            profile: menu_item.label;
+                            
+                            // Respond to button clicks
                             clicked => {
-                               is-toggled = !is-toggled;
-                                // Explicitly use the action from the loop's current scope
-                                root.run_command(menu_item.command-template, self.current-action);
+                                // Run the command when clicked
+                                root.run_command(menu_item.command-template, self.action);
                             }
                         }
                     }
 
+                    // Divider between menu items
                     Rectangle {
                         height: 3px;
                         background: #eee;
